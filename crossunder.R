@@ -1,38 +1,37 @@
-
 # BDA400 - Assignment 5
 # Crossunder Detection
 # Student: Rania Abdelmoaein
 
-crossunder <- function(series1, series2) {
-  
-  # Check that both series are numeric
-  if (!is.numeric(series1) || !is.numeric(series2)) {
-    stop("Both series must be numeric")
+crossunder <- function(arr1, arr2) {
+
+  # Check that both arrays are numeric
+  if (!is.numeric(arr1) || !is.numeric(arr2)) {
+    stop("Both arrays must be numeric")
   }
-  
-  # Check that both series have the same length
-  if (length(series1) != length(series2)) {
-    stop("Both series must have the same length")
+
+  # Check that both arrays have the same length
+  if (length(arr1) != length(arr2)) {
+    stop("Both arrays must have the same length")
   }
-  
+
   # Initialize crossunder signals
-  signals <- rep(FALSE, length(series1))
-  
-  # Detect when series1 crosses below series2
-  if (length(series1) >= 2) {
-    for (i in 2:length(series1)) {
-      
-      if (!anyNA(c(series1[i - 1], series2[i - 1],
-                   series1[i], series2[i]))) {
-        
+  signals <- rep(FALSE, length(arr1))
+
+  # Detect when arr1 crosses below arr2
+  if (length(arr1) >= 2) {
+    for (i in 2:length(arr1)) {
+
+      if (!anyNA(c(arr1[i - 1], arr2[i - 1],
+                   arr1[i], arr2[i]))) {
+
         signals[i] <- (
-          series1[i - 1] >= series2[i - 1] &&
-            series1[i] < series2[i]
+          arr1[i - 1] >= arr2[i - 1] &&
+            arr1[i] < arr2[i]
         )
       }
     }
   }
-  
+
   return(signals)
 }
 
